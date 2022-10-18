@@ -1,4 +1,4 @@
-package com.az.mykowel.controller.live;
+package com.az.mykowel.controller;
 
 import com.az.mykowel.model.modules.Market;
 import com.az.mykowel.model.services.FileService;

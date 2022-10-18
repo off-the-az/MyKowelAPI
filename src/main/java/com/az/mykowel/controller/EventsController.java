@@ -1,4 +1,4 @@
-package com.az.mykowel.controller.dev;
+package com.az.mykowel.controller;
 
 import java.util.*;
 import java.util.List;
@@ -12,9 +12,9 @@ import com.az.mykowel.model.modules.Events;
 import com.az.mykowel.model.services.EventsService;
 
 @RestController
-@RequestMapping("dev/events")
-public class DevEventsController {
-
+@RequestMapping("events")
+public class EventsController {
+    
     @Autowired
     private EventsService eventsService;
 

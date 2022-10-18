@@ -1,26 +1,20 @@
-package com.az.mykowel.controller.dev;
+package com.az.mykowel.controller;
 
 import com.az.mykowel.model.modules.Users;
 import com.az.mykowel.model.services.UserService;
-
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-import javax.xml.bind.DatatypeConverter;
-
 @RestController
-@RequestMapping("dev/user")
-public class DevUserController {
+@RequestMapping("user")
+public class UserController {
     @Autowired
     UserService userService;
 
@@ -32,7 +26,6 @@ public class DevUserController {
         char is_admin = user.getIs_admin();
         if(is_admin != '0' && check_adm != '0'){
             users = userService.listAllUser();
-            System.out.println(users);
             return users;
         }else{
             users.add(user);
@@ -40,20 +33,15 @@ public class DevUserController {
         }
     }
     @PostMapping(value = "", consumes = {"*/*"})
-    public ResponseEntity<?> add(@ModelAttribute Users user) throws NoSuchAlgorithmException {
+    public ResponseEntity<?> add(@ModelAttribute Users user) {
         try{
             List<Users> users = new ArrayList<>();
             users = userService.listAllUser();
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(user.getPassword().getBytes());
-            byte[] digest = md.digest();
-            String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
-            System.out.println(myHash);
-            user.setPassword(myHash);
             for(int i = 0; i < users.size(); i++){
                 if (Objects.equals(user.getLogin(), users.get(i).getLogin()) && Objects.equals(user.getPassword(), users.get(i).getPassword())){
                     userService.saveUser(user);
-                    return new ResponseEntity<Users>(user, HttpStatus.OK);
+
+                    return new ResponseEntity<>(user, HttpStatus.OK);
                 }
             }
             return null;
@@ -104,6 +92,7 @@ public class DevUserController {
         Users user = new Users();
         int status = 404;
         for (Users value : users) {
+            System.out.println(value.getLogin() + " ? " + login);
             if (Objects.equals(login, value.getLogin()) && Objects.equals(password, value.getPassword())) {
                 user = value;
                 String token = "-";

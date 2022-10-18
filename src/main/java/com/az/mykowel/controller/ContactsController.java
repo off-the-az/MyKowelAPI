@@ -1,4 +1,4 @@
-package com.az.mykowel.controller.dev;
+package com.az.mykowel.controller;
 
 import java.util.NoSuchElementException;
 
@@ -12,11 +12,10 @@ import java.util.*;
 import com.az.mykowel.model.services.ContactsService;
 import com.az.mykowel.model.modules.Contacts;
 
-
 @RestController
-@RequestMapping("dev/contacts")
-public class DevContactsController {
-    
+@RequestMapping("contacts")
+public class ContactsController {
+     
     @Autowired
     private ContactsService contactsService;
 
@@ -25,7 +24,7 @@ public class DevContactsController {
         try{
             return new ResponseEntity<List<Contacts>>(contactsService.listAllNumber(), HttpStatus.OK);
         }catch(NoSuchElementException e){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND); 
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT); 
         }
     }
 
@@ -34,7 +33,7 @@ public class DevContactsController {
         try{
             return new ResponseEntity<Contacts>(contactsService.findNumberByOwner(owner), HttpStatus.OK);
         }catch(NoSuchElementException e){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND); 
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT); 
         }
     }
 
@@ -43,7 +42,7 @@ public class DevContactsController {
         try{
             return new ResponseEntity<Optional<Contacts>>(contactsService.findById(id), HttpStatus.OK);
         }catch(NoSuchElementException e){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND); 
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT); 
         }
     }
 
@@ -75,7 +74,7 @@ public class DevContactsController {
             contactsService.deleteNumber(id);
            return new ResponseEntity<>("Contact deleted", HttpStatus.OK);
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<>("Error on sending. Pls, check parameters or logs", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error on sending. Pls, check parameters or logs", HttpStatus.CONFLICT);
         }
     }
 }
