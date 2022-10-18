@@ -1,4 +1,4 @@
-package com.az.mykowel.model.modules;
+package com.az.mykowel.model.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

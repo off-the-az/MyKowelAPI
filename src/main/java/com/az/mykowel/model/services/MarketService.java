@@ -1,6 +1,6 @@
 package com.az.mykowel.model.services;
 
-import com.az.mykowel.model.modules.Market;
+import com.az.mykowel.model.entity.Market;
 import com.az.mykowel.model.repositories.MarketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

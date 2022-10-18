@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.az.mykowel.model.modules.Contacts;
+import com.az.mykowel.model.entity.Contacts;
 import com.az.mykowel.model.repositories.ContactsRepository;
 
 @Service

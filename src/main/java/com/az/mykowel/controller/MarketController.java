@@ -1,6 +1,6 @@
 package com.az.mykowel.controller;
 
-import com.az.mykowel.model.modules.Market;
+import com.az.mykowel.model.entity.Market;
 import com.az.mykowel.model.services.FileService;
 import com.az.mykowel.model.services.MarketService;
 import org.springframework.beans.factory.annotation.Autowired;

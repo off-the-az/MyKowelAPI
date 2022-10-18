@@ -1,7 +1,7 @@
 package com.az.mykowel.model.services;
 
 
-import com.az.mykowel.model.modules.Users;
+import com.az.mykowel.model.entity.Users;
 import com.az.mykowel.model.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

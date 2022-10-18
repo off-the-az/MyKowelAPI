@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.az.mykowel.model.modules.Events;
+import com.az.mykowel.model.entity.Events;
 import com.az.mykowel.model.services.EventsService;
 
 @RestController

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+import com.az.mykowel.model.entity.Contacts;
 import com.az.mykowel.model.services.ContactsService;
-import com.az.mykowel.model.modules.Contacts;
 
 @RestController
 @RequestMapping("contacts")

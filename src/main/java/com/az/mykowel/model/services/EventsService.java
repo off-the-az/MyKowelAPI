@@ -1,13 +1,12 @@
 package com.az.mykowel.model.services;
 
+import com.az.mykowel.model.entity.*;
 import com.az.mykowel.model.repositories.EventsRepository;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.az.mykowel.model.modules.*;
 
 import javax.transaction.Transactional;
 

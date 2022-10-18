@@ -1,4 +1,4 @@
-package com.az.mykowel.model.modules;
+package com.az.mykowel.model.entity;
 
 public class File {
     private String fileName;

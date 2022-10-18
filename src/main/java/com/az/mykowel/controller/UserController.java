@@ -1,6 +1,6 @@
 package com.az.mykowel.controller;
 
-import com.az.mykowel.model.modules.Users;
+import com.az.mykowel.model.entity.Users;
 import com.az.mykowel.model.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

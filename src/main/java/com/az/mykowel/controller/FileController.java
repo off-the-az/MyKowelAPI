@@ -1,6 +1,6 @@
 package com.az.mykowel.controller;
 
-import com.az.mykowel.model.modules.File;
+import com.az.mykowel.model.entity.File;
 import com.az.mykowel.model.services.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
