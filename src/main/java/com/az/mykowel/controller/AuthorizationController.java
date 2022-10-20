@@ -24,15 +24,14 @@ public class AuthorizationController {
         int status = 404;
         for (Users value : users) {
             System.out.println(value.getLogin() + " ? " + login);
-            if (Objects.equals(login, value.getLogin()) && Objects.equals(password, value.getPassword())) {
+            if (Objects.equals(login, value.getLogin()) && Objects.equals(password, value.getPassword()) && (Objects.equals("-", value.getToken()))) {
                 user = value;
-                String token = "qwertyuiop";
-                user.setToken(token);
+                user.setToken("*"); //  !!! need to refactor for future tokenisation system !!!
                 userService.saveUser(user);
                 status = 200;
             }
         }
-        if(status == 200) return new ResponseEntity<Users>(user, HttpStatus.OK);
+        if(status == 200) return new ResponseEntity<Users>(user, HttpStatus.OK); // need to show full information in personal account MK-users
         else return new ResponseEntity<>("error", HttpStatus.CONFLICT);
     }
 
