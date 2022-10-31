@@ -40,7 +40,7 @@ public class UserController {
             for(int i = 0; i < users.size(); i++){
                 if (Objects.equals(user.getLogin(), users.get(i).getLogin()) && Objects.equals(user.getPassword(), users.get(i).getPassword())){
                     userService.saveUser(user);
-
+                    user.setIs_admin('0');
                     return new ResponseEntity<>(user, HttpStatus.OK);
                 }
             }
@@ -57,7 +57,7 @@ public class UserController {
             userService.saveUser(user);
             return new ResponseEntity<Users>(user, HttpStatus.OK);
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("User not found. Pls, check parameters", HttpStatus.NOT_FOUND);
         }
     }
     @DeleteMapping("/{token}")
