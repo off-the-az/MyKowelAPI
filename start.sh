@@ -1,3 +1,4 @@
-echo "My Kowel API run"
-cd /var/www/mykowel_ssh/data/www/mykovel.pp.ua/MyKowelAPI
+echo "My Kowel API run. Pls, write true path"
+read path
+cd path
 ./mvnw spring-boot:run
