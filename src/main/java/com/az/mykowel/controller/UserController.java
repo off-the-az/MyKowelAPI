@@ -18,13 +18,13 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/{token}/{check_adm}")
-    public List<Users> get(@PathVariable String token, @PathVariable char check_adm) {
+    @GetMapping("/{token}")
+    public List<Users> get(@PathVariable String token, @RequestParam(name = "adm", defaultValue = "0") String adm) {
         Users user;
         List<Users> users = new ArrayList<>();
         user = userService.getUserByToken(token);
         char is_admin = user.getIs_admin();
-        if(is_admin != '0' && check_adm != '0'){
+        if(is_admin != '0' && adm != "0"){
             users = userService.listAllUser();
             return users;
         }else{
