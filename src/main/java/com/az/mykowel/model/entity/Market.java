@@ -13,14 +13,23 @@ public class Market {
     private String photo;
     private short checked;
 
-    public Market(Long id, String title, String description, double price, String category, Long user_id, String photo, short checked){
+    public Market(Long id, String title, String description, double price, String category, Long user_id, short checked, String photo){
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
         this.category = category;
         this.user_id = user_id;
+        this.checked = checked;
         this.photo = photo;
+    }
+
+    public Market(String title, String description, double price, String category, Long user_id, short checked){
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.user_id = user_id;
         this.checked = checked;
     }
 

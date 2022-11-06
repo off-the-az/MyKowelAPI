@@ -41,7 +41,7 @@ public class MarketController {
             Market item = new Market();
             item = market;
             String fileName = fileStorageService.storeFile("market", String.valueOf(market.getUser_id()), file);
-            String fileDownloadUri = "https://mykovel.pp.ua:1935/downloadFile/market/" + fileName;
+            String fileDownloadUri = "https://mykovel.pp.ua:8000/downloadFile/market/" + fileName;
             item.setPhoto(fileDownloadUri);
             marketService.saveMarket(item);
             return new ResponseEntity<>("Item added", HttpStatus.OK);

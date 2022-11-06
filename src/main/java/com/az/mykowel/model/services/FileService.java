@@ -20,6 +20,7 @@ import java.nio.file.StandardCopyOption;
 public class FileService {
 
     private final Path fileStorageLocation;
+    public static String ROOT = "/home/the-az/files";
 
     @Autowired
     public FileService(FileStorageProperties fileStorageProperties) {
@@ -32,12 +33,13 @@ public class FileService {
             throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", ex);
         }
     }
-    public static String ROOT = "/home/theaz/Desktop/TestFTP";
+    
     public String storeFile(String prefix, String subprefix, MultipartFile file) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try {
+            System.out.println("Storing files");
             // Check if the file's name contains invalid characters
             if(fileName.contains("..")) {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
@@ -45,7 +47,7 @@ public class FileService {
 
             // Copy file to the target location (Replacing existing file with the same name)
             //Path targetLocation = this.fileStorageLocation.resolve(prefix+"-"+fileName);
-            Files.copy(file.getInputStream(), Paths.get(ROOT+"/"+prefix,subprefix+"-"+fileName), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(file.getInputStream(), Paths.get(ROOT+"/"+prefix+"/"+subprefix+"-"+fileName), StandardCopyOption.REPLACE_EXISTING);
 
             return subprefix+"-"+fileName;
         } catch (IOException ex) {
@@ -55,7 +57,7 @@ public class FileService {
 
     public Resource loadFileAsResource(String fileName, String dir) {
         try {
-            Path filePath = this.fileStorageLocation.resolve(dir+"/"+fileName).normalize();
+            Path filePath = this.fileStorageLocation.resolve(ROOT+"/"+dir+"/"+fileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
             if(resource.exists()) {
                 return resource;
