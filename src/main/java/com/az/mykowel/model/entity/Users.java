@@ -6,14 +6,14 @@ import javax.persistence.Id;
 
 @Entity
 public class Users {
-    private int id;
+    private Long id;
     private String login;
     private String name;
     private String email;
     private String phone;
     private String password;
     private String token;
-    private char is_admin;
+    private String is_admin;
 
     public Users() {
     }
@@ -42,15 +42,15 @@ public class Users {
         this.phone = phone;
     }
 
-    public char getIs_admin() {
+    public String getIs_admin() {
         return is_admin;
     }
 
-    public void setIs_admin(char is_admin) {
+    public void setIs_admin(String is_admin) {
         this.is_admin = is_admin;
     }
 
-    public Users(int id, String login, String name, String email, String phone, String password, String token, char is_admin) {
+    public Users(Long id, String login, String name, String email, String phone, String password, String token, String is_admin) {
         this.id = id;
         this.login = login;
         this.name = name;
@@ -60,13 +60,14 @@ public class Users {
         this.token = token;
         this.is_admin = is_admin;
     }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id){
+    public void setId(Long id){
         this.id = id;
     }
 

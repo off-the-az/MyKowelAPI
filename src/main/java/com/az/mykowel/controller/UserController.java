@@ -7,10 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
+import java.security.*;
+import java.io.*;
 
 @RestController
 @RequestMapping("user")
@@ -19,12 +18,12 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/{token}")
-    public List<Users> get(@PathVariable String token, @RequestParam(name = "adm", defaultValue = "0") String adm) {
+    public List<Users> get(@PathVariable String token) {
         Users user;
         List<Users> users = new ArrayList<>();
         user = userService.getUserByToken(token);
-        char is_admin = user.getIs_admin();
-        if(is_admin != '0' && adm != "0"){
+        String is_admin = user.getIs_admin();
+        if(is_admin != "0"){
             users = userService.listAllUser();
             return users;
         }else{
@@ -32,19 +31,17 @@ public class UserController {
             return users;
         }
     }
-    @PostMapping(value = "", consumes = {"*/*"})
+    @PostMapping(value = "/add", consumes = {"*/*"})
     public ResponseEntity<?> add(@ModelAttribute Users user) {
         try{
             List<Users> users = new ArrayList<>();
             users = userService.listAllUser();
-            for(int i = 0; i < users.size(); i++){
-                if (Objects.equals(user.getLogin(), users.get(i).getLogin()) && Objects.equals(user.getPassword(), users.get(i).getPassword())){
-                    userService.saveUser(user);
-                    user.setIs_admin('0');
-                    return new ResponseEntity<>(user, HttpStatus.OK);
-                }
-            }
-            return null;
+            String password = user.getPassword();
+            user.setPassword(md5(md5(password)));
+            user.setIs_admin("0");
+            user.setToken(generateNewToken());
+            userService.saveUser(user);
+            return new ResponseEntity<Users>(user, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
         }
@@ -65,5 +62,28 @@ public class UserController {
         userService.deleteUser(token);
     }
 
-   
+    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
+    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
+    
+    public static String md5(String text){
+        try {
+            byte[] bytesOfMessage = text.getBytes("UTF-8");
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] theMD5digest = md.digest(bytesOfMessage);
+            return base64Encoder.encodeToString(theMD5digest);
+        } catch(NoSuchAlgorithmException e  ) {
+            e.printStackTrace();
+            return null;
+        }
+        catch(UnsupportedEncodingException e) {
+            e.printStackTrace(); 
+            return null;
+        }
+    }
+
+    public static String generateNewToken() {
+        byte[] randomBytes = new byte[24];
+        secureRandom.nextBytes(randomBytes);
+        return base64Encoder.encodeToString(randomBytes);
+    }
 }
