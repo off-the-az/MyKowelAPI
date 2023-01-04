@@ -43,8 +43,13 @@ public class UserController {
         }
     }
     @DeleteMapping("/{token}")
-    public void delete(@PathVariable String token) {
-        userService.deleteUser(token);
+    public ResponseEntity<?> delete(@PathVariable String token) {
+        try {
+            userService.deleteUser(token);
+            return new ResponseEntity<>("User deleted", HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>("User not found. Pls, check parameters", HttpStatus.NOT_FOUND);
+        }
     }
 
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
