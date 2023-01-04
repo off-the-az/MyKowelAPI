@@ -23,7 +23,7 @@ public class UserController {
         List<Users> users = new ArrayList<>();
         user = userService.getUserByToken(token);
         String is_admin = user.getIs_admin();
-        if(is_admin != "0"){
+        if(!Objects.equals(is_admin,"0")){
             users = userService.listAllUser();
             return users;
         }else{
