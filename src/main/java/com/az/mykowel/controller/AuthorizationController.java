@@ -57,6 +57,37 @@ public class AuthorizationController {
         else return new ResponseEntity<>("error", HttpStatus.CONFLICT);
     }
 
+    @PostMapping(value = "/register", consumes = {"*/*"})
+    public ResponseEntity<?> add(@ModelAttribute Users user) {
+        try{
+            List<Users> users = new ArrayList<>();
+            users = userService.listAllUser();
+            int status = 404;
+            for (Users value : users) {
+                if(!Objects.equals(value.getLogin(), user.getLogin())){
+                    status = 200;
+                }
+                else{
+                    status = 404;
+                }
+            }
+            if(status == 200)
+            {
+                String password = user.getPassword();
+                user.setPassword(md5(md5(password)));
+                user.setIs_admin("0");
+                user.setToken(generateNewToken());
+                userService.saveUser(user);
+                return new ResponseEntity<Users>(user, HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>("User had been creating", HttpStatus.CONFLICT);
+            }
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
+        }
+    }
+
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
     

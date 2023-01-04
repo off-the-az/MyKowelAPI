@@ -31,21 +31,6 @@ public class UserController {
             return users;
         }
     }
-    @PostMapping(value = "/add", consumes = {"*/*"})
-    public ResponseEntity<?> add(@ModelAttribute Users user) {
-        try{
-            List<Users> users = new ArrayList<>();
-            users = userService.listAllUser();
-            String password = user.getPassword();
-            user.setPassword(md5(md5(password)));
-            user.setIs_admin("0");
-            user.setToken(generateNewToken());
-            userService.saveUser(user);
-            return new ResponseEntity<Users>(user, HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
-        }
-    }
     @PutMapping("/{token}")
     public ResponseEntity<?> update(@ModelAttribute Users user, @PathVariable String token) {
         try {
@@ -79,11 +64,5 @@ public class UserController {
             e.printStackTrace(); 
             return null;
         }
-    }
-
-    public static String generateNewToken() {
-        byte[] randomBytes = new byte[24];
-        secureRandom.nextBytes(randomBytes);
-        return base64Encoder.encodeToString(randomBytes);
     }
 }
