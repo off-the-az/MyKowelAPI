@@ -18,12 +18,12 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/")
-    public List<Users> get(@RequestHeader String token) {
+    public List<Users> get(@RequestHeader String token, @RequestHeader String show_adm) {
         Users user;
         List<Users> users = new ArrayList<>();
         user = userService.getUserByToken(token);
         String is_admin = user.getIs_admin();
-        if(!Objects.equals(is_admin,"0")){
+        if(Objects.equals(is_admin,"1") && (Objects.equals(show_adm, "1"))){
             users = userService.listAllUser();
             return users;
         }else{
