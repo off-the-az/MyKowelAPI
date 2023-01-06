@@ -17,8 +17,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/{token}")
-    public List<Users> get(@PathVariable String token) {
+    @GetMapping("/")
+    public List<Users> get(@RequestHeader String token) {
         Users user;
         List<Users> users = new ArrayList<>();
         user = userService.getUserByToken(token);
