@@ -78,6 +78,7 @@ public class AuthorizationController {
                 user.setIs_admin("0");
                 user.setToken(generateNewToken());
                 userService.saveUser(user);
+                System.out.println(user.getEmail() + " " + user.getLogin() + " " + user.getName() + " " + user.getPassword() + " " + user.getPhone());
                 return new ResponseEntity<Users>(user, HttpStatus.OK);
             }
             else{
