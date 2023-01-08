@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 import com.az.mykowel.model.entity.Contacts;
+import com.az.mykowel.model.entity.Users;
 import com.az.mykowel.model.services.ContactsService;
+import com.az.mykowel.model.services.UserService;
 
 @RestController
 @RequestMapping("contacts")
@@ -18,6 +20,9 @@ public class ContactsController {
      
     @Autowired
     private ContactsService contactsService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/all")
     public ResponseEntity<?> get(){
@@ -47,32 +52,50 @@ public class ContactsController {
     }
 
     @PostMapping(value = "/add", consumes = {"*/*"})
-    public ResponseEntity<?> add(@ModelAttribute Contacts contact) {
+    public ResponseEntity<?> add(@ModelAttribute Contacts contact, @RequestHeader String token) {
         try{
-            contactsService.saveNumber(contact);
-           return new ResponseEntity<>("Contact added", HttpStatus.OK);
+            Users user = userService.getUserByToken(token);
+            if(user.checkPerms(user.getIs_admin())) {
+                contactsService.saveNumber(contact);
+                return new ResponseEntity<>("Contact added", HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>("Permissions denied", HttpStatus.FORBIDDEN);
+            }
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>("Error on sending. Pls, check parameters or logs", HttpStatus.CONFLICT);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@ModelAttribute Contacts contact, @PathVariable Long id) {
+    public ResponseEntity<?> update(@ModelAttribute Contacts contact, @PathVariable Long id, @RequestHeader String token) {
         try {
-            Contacts exitContact = contactsService.findNumberById(id);
-            contact.setId(exitContact.getId());
-            contactsService.saveNumber(contact);
-            return new ResponseEntity<>("Contact saved", HttpStatus.OK);
+            Users user = userService.getUserByToken(token);
+            if(user.checkPerms(user.getIs_admin())) {
+                Contacts exitContact = contactsService.findNumberById(id);
+                contact.setId(exitContact.getId());
+                contactsService.saveNumber(contact);
+                return new ResponseEntity<>("Contact saved", HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>("Permissions denied", HttpStatus.FORBIDDEN);
+            }
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>("Error on sending. Pls, check parametrs or logs", HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id, @RequestHeader String token) {
         try{
-            contactsService.deleteNumber(id);
-           return new ResponseEntity<>("Contact deleted", HttpStatus.OK);
+            Users user = userService.getUserByToken(token);
+            if(user.checkPerms(user.getIs_admin())) {
+                contactsService.deleteNumber(id);
+                return new ResponseEntity<>("Contact deleted", HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>("Permissions denied", HttpStatus.FORBIDDEN);
+            }
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>("Error on sending. Pls, check parameters or logs", HttpStatus.CONFLICT);
         }
