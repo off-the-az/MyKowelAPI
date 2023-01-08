@@ -1,4 +1,6 @@
 package com.az.mykowel.model.entity;
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -93,5 +95,10 @@ public class Users {
 
     public void setToken(String token){
         this.token = token;
+    }
+
+    public boolean checkPerms(String is_admin){
+        if(Objects.equals(is_admin,"1")) return true;
+        else return false;
     }
 }

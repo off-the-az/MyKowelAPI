@@ -23,7 +23,7 @@ public class UserController {
         List<Users> users = new ArrayList<>();
         user = userService.getUserByToken(token);
         String is_admin = user.getIs_admin();
-        if(Objects.equals(is_admin,"1") && (Objects.equals(admin, "1"))){
+        if(user.checkPerms(is_admin) && (Objects.equals(admin, "1"))){
             users = userService.listAllUser();
             return users;
         }else{
@@ -51,9 +51,8 @@ public class UserController {
             return new ResponseEntity<>("User not found. Pls, check parameters", HttpStatus.NOT_FOUND);
         }
     }
-
-    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
-    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
+    
+    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder();
     
     public static String md5(String text){
         try {
