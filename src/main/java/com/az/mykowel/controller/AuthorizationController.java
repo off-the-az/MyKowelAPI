@@ -21,19 +21,19 @@ public class AuthorizationController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam(value = "login", required = true, defaultValue = "") String login, @RequestParam(value = "password", required = true, defaultValue = "") String password){
         List<Users> users = new ArrayList<>();
-        users = userService.listAllUser();
         Users user = new Users();
+        users = userService.listAllUser();
         password = md5(md5(password));
         int status = 404;
         for (Users value : users) {
             if (Objects.equals(login, value.getLogin()) && Objects.equals(password, value.getPassword())) {
+                value.setToken(generateNewToken());
+                userService.saveUser(value);
                 user = value;
-                user.setToken(generateNewToken()); //  !!! need to refactor for future tokenisation system !!!
-                userService.saveUser(user);
                 status = 200;
             }
         }
-        if(status == 200) return new ResponseEntity<Users>(user, HttpStatus.OK); // need to show full information in personal account MK-users
+        if(status == 200) return new ResponseEntity<Users>(user, HttpStatus.OK);
         else return new ResponseEntity<>("error", HttpStatus.CONFLICT);
     }
 
@@ -44,7 +44,6 @@ public class AuthorizationController {
         Users user = new Users();
         int status = 404;
         for (Users value : users) {
-            System.out.println(value.getLogin() + " ? " + login);
             if (Objects.equals(login, value.getLogin()) && Objects.equals(password, value.getPassword())) {
                 user = value;
                 String token = "-";
