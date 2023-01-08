@@ -1,8 +1,11 @@
 package com.az.mykowel.controller;
 
 import com.az.mykowel.model.entity.Market;
+import com.az.mykowel.model.entity.Users;
 import com.az.mykowel.model.services.FileService;
 import com.az.mykowel.model.services.MarketService;
+import com.az.mykowel.model.services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,9 @@ public class MarketController {
 
     @Autowired
     private FileService fileStorageService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private MarketService marketService;
@@ -65,10 +71,16 @@ public class MarketController {
     }
     
     @DeleteMapping(value="/delete/{id}", consumes={"*/*"})
-    public ResponseEntity<?> delete(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable Long id, @RequestHeader String token){
         try{
-            marketService.deleteMarket(id);
-            return new ResponseEntity<>("Item deleted", HttpStatus.OK);
+            Users user = userService.getUserByToken(token);
+            if(user.checkPerms(user.getIs_admin())) {
+                marketService.deleteMarket(id);
+                return new ResponseEntity<>("Item deleted", HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>("Permissions denied", HttpStatus.FORBIDDEN);
+            }
         }catch(NoSuchElementException e){
             return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
         }
