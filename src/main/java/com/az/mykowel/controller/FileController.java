@@ -47,6 +47,9 @@ public class FileController {
                 .collect(Collectors.toList());
     }
 
+
+    // FIXME: Need to check how it works!!!
+
     @GetMapping("/downloadFile/{dir}/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String dir, @PathVariable String fileName, HttpServletRequest request) {
         // Load file as Resource
