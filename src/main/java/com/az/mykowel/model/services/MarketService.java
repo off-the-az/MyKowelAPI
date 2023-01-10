@@ -32,7 +32,7 @@ public class MarketService {
     }
 
     public Market getItemById(Long Id){
-        return marketRepository.getById(Id);
+        return marketRepository.getById(Id); // FIXME: need to change
     }
 
     public void deleteMarket(Long id) {
