@@ -34,7 +34,7 @@ public class AuthorizationController {
             }
         }
         if(status == 200) return new ResponseEntity<Users>(user, HttpStatus.OK);
-        else return new ResponseEntity<>("error", HttpStatus.CONFLICT);
+        else return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
     }
 
     @PostMapping("/logout")
