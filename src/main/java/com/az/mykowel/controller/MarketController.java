@@ -42,15 +42,13 @@ public class MarketController {
     }
 
     @PostMapping(value="/add", consumes = {"*/*"})
-    public ResponseEntity<?> send(@ModelAttribute Market market, @RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> send(@ModelAttribute Market item, @RequestParam("file") MultipartFile file){
         try{
-            Market item = new Market();
-            item = market;
-            String fileName = fileStorageService.storeFile("market", String.valueOf(market.getUser_id()), file);
+            String fileName = fileStorageService.storeFile("market", String.valueOf(item.getUser_id()), file);
             String fileDownloadUri = "https://mykovel.pp.ua:8000/downloadFile/market/" + fileName;
             item.setPhoto(fileDownloadUri);
             marketService.saveMarket(item);
-            return new ResponseEntity<>("Item added", HttpStatus.OK);
+            return new ResponseEntity<Market>(item, HttpStatus.OK);
 
         }catch (NoSuchElementException e) {
             return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
