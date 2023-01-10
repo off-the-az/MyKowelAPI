@@ -38,22 +38,14 @@ public class AuthorizationController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestParam(value = "login", required = true, defaultValue = "") String login, @RequestParam(value = "password", required = true, defaultValue = "") String password){
-        List<Users> users = new ArrayList<>();
-        users = userService.listAllUser();
-        Users user = new Users();
-        int status = 404;
-        for (Users value : users) {
-            if (Objects.equals(login, value.getLogin()) && Objects.equals(password, value.getPassword())) {
-                user = value;
-                String token = "-";
-                user.setToken(token);
-                userService.saveUser(user);
-                status = 200;
-            }
-        }
-        if(status == 200) return new ResponseEntity<Users>(user, HttpStatus.OK);
-        else return new ResponseEntity<>("error", HttpStatus.CONFLICT);
+    public ResponseEntity<?> logout(@RequestHeader String token){
+        try{
+            Users user = userService.getUserByToken(token);
+            user.setToken(" ");
+            return new ResponseEntity<Users>(user, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
+        } 
     }
 
     @PostMapping(value = "/register", consumes = {"*/*"})
