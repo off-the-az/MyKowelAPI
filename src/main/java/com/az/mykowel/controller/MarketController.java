@@ -62,7 +62,7 @@ public class MarketController {
             Market item = marketService.getItemById(id);
             market.setId(item.getId());
             marketService.saveMarket(market);
-            return new ResponseEntity<>("Item updated", HttpStatus.OK);
+            return new ResponseEntity<Market>(market, HttpStatus.OK);
         }catch(NoSuchElementException e){
             return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
         }
