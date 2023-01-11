@@ -6,5 +6,5 @@ import com.az.mykowel.model.entity.Contacts;
 
 public interface ContactsRepository  extends JpaRepository<Contacts, Long> {
 
-    public Contacts findByOwner(String owner);
+    public Contacts findAllByOwner(String owner);
 }

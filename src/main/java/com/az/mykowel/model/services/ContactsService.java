@@ -31,7 +31,7 @@ public class ContactsService {
     }
 
     public Contacts findNumberByOwner(String owner){
-        return contactsRepository.findByOwner(owner);
+        return contactsRepository.findAllByOwner(owner);
     }
 
     public void saveNumber(Contacts contact){
