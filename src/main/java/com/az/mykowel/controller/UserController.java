@@ -31,8 +31,8 @@ public class UserController {
             return users;
         }
     }
-    @PutMapping("/{token}")
-    public ResponseEntity<?> update(@ModelAttribute Users user, @PathVariable String token) {
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@ModelAttribute Users user, @RequestHeader String token) {
         try {
             Users existUser = userService.getUserByToken(token);
             user.setId(existUser.getId());
@@ -42,8 +42,8 @@ public class UserController {
             return new ResponseEntity<>("User not found. Pls, check parameters", HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/{token}")
-    public ResponseEntity<?> delete(@PathVariable String token) {
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(@RequestHeader String token) {
         try {
             userService.deleteUser(token);
             return new ResponseEntity<>("User deleted", HttpStatus.OK);
