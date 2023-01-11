@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/get")
     public List<Users> get(@RequestHeader String token, @RequestHeader String admin) {
         Users user;
         List<Users> users = new ArrayList<>();

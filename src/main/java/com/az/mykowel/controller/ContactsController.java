@@ -24,7 +24,7 @@ public class ContactsController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/all")
+    @GetMapping("/get")
     public ResponseEntity<?> get(){
         try{
             return new ResponseEntity<List<Contacts>>(contactsService.listAllNumber(), HttpStatus.OK);
