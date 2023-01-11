@@ -49,12 +49,12 @@ public class EventsController {
         }
     }
 
-    @DeleteMapping(value = "/delete/{Id}")
-    public ResponseEntity<?> delete(@PathVariable Long Id, @RequestHeader String token){
+    @DeleteMapping(value = "/delete")
+    public ResponseEntity<?> delete(@RequestHeader Long id, @RequestHeader String token){
         try{
             Users user = userService.getUserByToken(token);
             if(user.checkPerms(user.getIs_admin())) {
-                eventsService.delete(Id);
+                eventsService.delete(id);
                 return new ResponseEntity<>("Event deleted", HttpStatus.OK);
             }
             else{

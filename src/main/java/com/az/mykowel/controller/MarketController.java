@@ -56,8 +56,8 @@ public class MarketController {
 
     }
     
-    @PutMapping(value="/update/{id}", consumes={"*/*"})
-    public ResponseEntity<?> update(@ModelAttribute Market market, @PathVariable Long id){
+    @PutMapping(value="/update", consumes={"*/*"})
+    public ResponseEntity<?> update(@ModelAttribute Market market, @RequestHeader Long id){
         try{
             Market item = marketService.getItemById(id);
             market.setId(item.getId());
@@ -68,8 +68,8 @@ public class MarketController {
         }
     }
     
-    @DeleteMapping(value="/delete/{id}", consumes={"*/*"})
-    public ResponseEntity<?> delete(@PathVariable Long id, @RequestHeader String token){
+    @DeleteMapping(value="/delete", consumes={"*/*"})
+    public ResponseEntity<?> delete(@RequestHeader Long id, @RequestHeader String token){
         try{
             Users user = userService.getUserByToken(token);
             if(user.checkPerms(user.getIs_admin())) {

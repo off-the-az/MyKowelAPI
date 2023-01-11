@@ -33,8 +33,8 @@ public class ContactsController {
         }
     }
 
-    @GetMapping("/byOwner/{owner}")
-    public ResponseEntity<?> get(@PathVariable String owner){
+    @GetMapping("/byOwner")
+    public ResponseEntity<?> get(@RequestHeader String owner){
         try{
             return new ResponseEntity<List<Contacts>>(contactsService.findNumberByOwner(owner), HttpStatus.OK);
         }catch(NoSuchElementException e){
@@ -42,8 +42,8 @@ public class ContactsController {
         }
     }
 
-    @GetMapping("/byID/{id}")
-    public ResponseEntity<?> get(@PathVariable Long id){
+    @GetMapping("/byID")
+    public ResponseEntity<?> get(@RequestHeader Long id){
         try{
             return new ResponseEntity<Optional<Contacts>>(contactsService.findById(id), HttpStatus.OK);
         }catch(NoSuchElementException e){
@@ -67,8 +67,8 @@ public class ContactsController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@ModelAttribute Contacts contact, @PathVariable Long id, @RequestHeader String token) {
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@ModelAttribute Contacts contact, @RequestHeader Long id, @RequestHeader String token) {
         try {
             Users user = userService.getUserByToken(token);
             if(user.checkPerms(user.getIs_admin())) {
@@ -85,8 +85,8 @@ public class ContactsController {
         }
     }
 
-    @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id, @RequestHeader String token) {
+    @DeleteMapping(value = "/delete")
+    public ResponseEntity<?> delete(@RequestHeader Long id, @RequestHeader String token) {
         try{
             Users user = userService.getUserByToken(token);
             if(user.checkPerms(user.getIs_admin())) {
