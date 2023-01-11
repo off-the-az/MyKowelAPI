@@ -36,7 +36,7 @@ public class ContactsController {
     @GetMapping("/byOwner/{owner}")
     public ResponseEntity<?> get(@PathVariable String owner){
         try{
-            return new ResponseEntity<Contacts>(contactsService.findNumberByOwner(owner), HttpStatus.OK);
+            return new ResponseEntity<List<Contacts>>(contactsService.findNumberByOwner(owner), HttpStatus.OK);
         }catch(NoSuchElementException e){
             return new ResponseEntity<>(null, HttpStatus.CONFLICT); 
         }

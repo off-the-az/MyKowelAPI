@@ -30,8 +30,8 @@ public class ContactsService {
         return contactsRepository.findById(Id);
     }
 
-    public Contacts findNumberByOwner(String owner){
-        return contactsRepository.findAllByOwner(owner);
+    public List<Contacts> findNumberByOwner(String owner){
+        return contactsRepository.findAllByOwnerStartsWith(owner);
     }
 
     public void saveNumber(Contacts contact){
