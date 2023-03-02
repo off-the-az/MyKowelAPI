@@ -51,22 +51,4 @@ public class UserController {
             return new ResponseEntity<>("User not found. Pls, check parameters", HttpStatus.NOT_FOUND);
         }
     }
-    
-    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder();
-    
-    public static String md5(String text){
-        try {
-            byte[] bytesOfMessage = text.getBytes("UTF-8");
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] theMD5digest = md.digest(bytesOfMessage);
-            return base64Encoder.encodeToString(theMD5digest);
-        } catch(NoSuchAlgorithmException e  ) {
-            e.printStackTrace();
-            return null;
-        }
-        catch(UnsupportedEncodingException e) {
-            e.printStackTrace(); 
-            return null;
-        }
-    }
 }
