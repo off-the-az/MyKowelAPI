@@ -20,7 +20,7 @@ import java.nio.file.StandardCopyOption;
 public class FileService {
 
     private final Path fileStorageLocation;
-    public static String ROOT = "/home/the-az/files";
+    public static String ROOT = "/root/MyKowelAPI/src/main/resources/assets";
 
     @Autowired
     public FileService(FileStorageProperties fileStorageProperties) {
