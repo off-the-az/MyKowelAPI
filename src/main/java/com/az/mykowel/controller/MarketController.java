@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("market")
@@ -38,6 +39,7 @@ public class MarketController {
         }else{
             items = marketService.listAllMarketByCategory(category);
         }
+        Collections.reverse(items);
         return items;
     }
 
