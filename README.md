@@ -32,6 +32,7 @@ The following links allow you to work with database information:
     -  Market`s data (Need an id or full market`s info)
         - [GET] https://mykowel.pp.ua:8000/market/get
         - [GET] https://mykowel.pp.ua:8000/market/get/title/?value=
+        - [GET] https://mykowel.pp.ua:8000/market/get/category/?value=
         - [POST] https://mykowel.pp.ua:8000/market/add
         - [PUT] https://mykowel.pp.ua:8000/market/update
         - [DELETE] https://mykowel.pp.ua:8000/market/delete (need a token)
