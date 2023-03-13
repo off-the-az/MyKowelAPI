@@ -34,21 +34,25 @@ public class MarketController {
     @GetMapping("/get")
     public List<Market> getAll(@RequestParam(value = "category", required = true, defaultValue = "") String category){
         List<Market> items = new ArrayList<>();
-        if (Objects.equals(category, "")){
-            items = marketService.listAllMarket();
-        }else{
-            items = marketService.listAllMarketByCategory(category);
-        }
+        items = marketService.listAllMarket();
+        Collections.reverse(items);
+        return items;
+    }
+
+    @GetMapping("/get/category")
+    public List<Market> getByCategory(@RequestParam(value = "value", required = true, defaultValue = "") String category){
+        List<Market> items = new ArrayList<>();
+        items = marketService.listAllMarketByCategory(category);
         Collections.reverse(items);
         return items;
     }
 
     @GetMapping("/get/title")
-    public ResponseEntity<?> getByTitle(@RequestParam(value = "value", required = true, defaultValue = "") String title){
+    public List<Market> getByTitle(@RequestParam(value = "value", required = true, defaultValue = "") String title){
         try{
-            return new ResponseEntity<List<Market>>(marketService.listAllMarketByTitle(title), HttpStatus.OK);
+            return marketService.listAllMarketByTitle(title);
         }catch(NoSuchElementException e){
-            return new ResponseEntity<>(null, HttpStatus.CONFLICT); 
+            return null; 
         }
     }
 
