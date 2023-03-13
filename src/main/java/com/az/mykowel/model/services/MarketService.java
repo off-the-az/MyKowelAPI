@@ -23,6 +23,10 @@ public class MarketService {
         return marketRepository.findByCategory(category);
     }
 
+    public List<Market> listAllMarketByTitle(String title) {
+        return marketRepository.findByTitleStarstWith(title);
+    }
+
     public void saveMarket(Market item) {
         marketRepository.save(item);
     }

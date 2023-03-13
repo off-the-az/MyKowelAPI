@@ -32,7 +32,7 @@ public class MarketController {
     private MarketService marketService;
 
     @GetMapping("/get")
-    public List<Market> get(@RequestParam(value = "category", required = true, defaultValue = "") String category){
+    public List<Market> getAll(@RequestParam(value = "category", required = true, defaultValue = "") String category){
         List<Market> items = new ArrayList<>();
         if (Objects.equals(category, "")){
             items = marketService.listAllMarket();
@@ -41,6 +41,15 @@ public class MarketController {
         }
         Collections.reverse(items);
         return items;
+    }
+
+    @GetMapping("/get/item")
+    public ResponseEntity<?> getByTitle(@RequestParam(value = "title", required = true, defaultValue = "") String title){
+        try{
+            return new ResponseEntity<List<Market>>(marketService.listAllMarketByTitle(title), HttpStatus.OK);
+        }catch(NoSuchElementException e){
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT); 
+        }
     }
 
     @PostMapping(value="/add", consumes = {"*/*"})

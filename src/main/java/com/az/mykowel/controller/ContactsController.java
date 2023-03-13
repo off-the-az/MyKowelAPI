@@ -33,8 +33,8 @@ public class ContactsController {
         }
     }
 
-    @GetMapping("/byOwner")
-    public ResponseEntity<?> get(@RequestHeader String owner){
+    @GetMapping("/get/owner")
+    public ResponseEntity<?> get(@RequestParam(value = "value", required = true, defaultValue = "") String owner){
         try{
             return new ResponseEntity<List<Contacts>>(contactsService.findNumberByOwner(owner), HttpStatus.OK);
         }catch(NoSuchElementException e){
@@ -42,8 +42,8 @@ public class ContactsController {
         }
     }
 
-    @GetMapping("/byID")
-    public ResponseEntity<?> get(@RequestHeader Long id){
+    @GetMapping("/get/id")
+    public ResponseEntity<?> get(@RequestParam(value = "value", required = true, defaultValue = "") Long id){
         try{
             return new ResponseEntity<Optional<Contacts>>(contactsService.findById(id), HttpStatus.OK);
         }catch(NoSuchElementException e){
