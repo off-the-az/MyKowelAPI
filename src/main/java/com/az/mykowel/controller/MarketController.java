@@ -43,8 +43,8 @@ public class MarketController {
         return items;
     }
 
-    @GetMapping("/get/item")
-    public ResponseEntity<?> getByTitle(@RequestParam(value = "title", required = true, defaultValue = "") String title){
+    @GetMapping("/get/title")
+    public ResponseEntity<?> getByTitle(@RequestParam(value = "value", required = true, defaultValue = "") String title){
         try{
             return new ResponseEntity<List<Market>>(marketService.listAllMarketByTitle(title), HttpStatus.OK);
         }catch(NoSuchElementException e){
