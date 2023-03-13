@@ -10,6 +10,6 @@ import java.util.List;
 @EnableJpaRepositories
 public interface MarketRepository  extends JpaRepository<Market, Long> {
     List<Market> findByCategory(String category);
-    List<Market> findByTitleStarstWith(String title);
+    List<Market> findByTitleStartsWith(String title);
     
 }

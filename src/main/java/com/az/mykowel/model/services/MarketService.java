@@ -24,7 +24,7 @@ public class MarketService {
     }
 
     public List<Market> listAllMarketByTitle(String title) {
-        return marketRepository.findByTitleStarstWith(title);
+        return marketRepository.findByTitleStartsWith(title);
     }
 
     public void saveMarket(Market item) {
