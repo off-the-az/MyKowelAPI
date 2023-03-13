@@ -18,8 +18,8 @@ The following links allow you to work with database information:
 
     - Contact`s data (Need an owner, id or full contact`s info)
         - [GET] https://mykowel.pp.ua:8000/contacts/get
-        - [GET] https://mykowel.pp.ua:8000/contacts/byOwner
-        - [GET] https://mykowel.pp.ua:8000/contacts/byID
+        - [GET] https://mykowel.pp.ua:8000/contacts/get/owner/?value=
+        - [GET] https://mykowel.pp.ua:8000/contacts/get/id/?value=
         - [POST] https://mykowel.pp.ua:8000/contacts/add
         - [PUT] https://mykowel.pp.ua:8000/contacts/update
         - [DELETE] https://mykowel.pp.ua:8000/contacts/delete (need a token)
@@ -31,6 +31,7 @@ The following links allow you to work with database information:
 
     -  Market`s data (Need an id or full market`s info)
         - [GET] https://mykowel.pp.ua:8000/market/get
+        - [GET] https://mykowel.pp.ua:8000/market/get/title/?value=
         - [POST] https://mykowel.pp.ua:8000/market/add
         - [PUT] https://mykowel.pp.ua:8000/market/update
         - [DELETE] https://mykowel.pp.ua:8000/market/delete (need a token)
