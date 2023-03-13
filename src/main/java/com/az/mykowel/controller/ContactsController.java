@@ -34,7 +34,7 @@ public class ContactsController {
     }
 
     @GetMapping("/get/owner")
-    public ResponseEntity<?> get(@RequestParam(value = "value", required = true, defaultValue = "") String owner){
+    public ResponseEntity<?> getByOwner(@RequestParam(value = "value", required = true, defaultValue = "") String owner){
         try{
             return new ResponseEntity<List<Contacts>>(contactsService.findNumberByOwner(owner), HttpStatus.OK);
         }catch(NoSuchElementException e){
@@ -43,7 +43,7 @@ public class ContactsController {
     }
 
     @GetMapping("/get/id")
-    public ResponseEntity<?> get(@RequestParam(value = "value", required = true, defaultValue = "") Long id){
+    public ResponseEntity<?> getById(@RequestParam(value = "value", required = true, defaultValue = "") Long id){
         try{
             return new ResponseEntity<Optional<Contacts>>(contactsService.findById(id), HttpStatus.OK);
         }catch(NoSuchElementException e){
