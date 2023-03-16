@@ -9,26 +9,29 @@ public class Market {
     private String description;
     private double price;
     private String category;
+    private String pnumber;
     private Long user_id;
     private String photo;
     private short checked;
 
-    public Market(Long id, String title, String description, double price, String category, Long user_id, short checked, String photo){
+    public Market(Long id, String title, String description, double price, String category, String pnumber, Long user_id, short checked, String photo){
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
         this.category = category;
+        this.pnumber = pnumber;
         this.user_id = user_id;
         this.checked = checked;
         this.photo = photo;
     }
 
-    public Market(String title, String description, double price, String category, Long user_id, short checked){
+    public Market(String title, String description, double price, String category, String pnumber, Long user_id, short checked){
         this.title = title;
         this.description = description;
         this.price = price;
         this.category = category;
+        this.pnumber = pnumber;
         this.user_id = user_id;
         this.checked = checked;
     }
@@ -71,6 +74,14 @@ public class Market {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getPnumber() {
+        return pnumber;
+    }
+
+    public void setPnumber(String pnumber) {
+        this.pnumber = pnumber;
     }
 
     public Long getUser_id() {
