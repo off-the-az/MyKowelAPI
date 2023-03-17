@@ -33,24 +33,35 @@ public class MarketController {
 
     @GetMapping("/get")
     public List<Market> getAll(@RequestParam(value = "category", required = true, defaultValue = "") String category){
-        List<Market> items = new ArrayList<>();
-        items = marketService.listAllMarket();
-        Collections.reverse(items);
-        return items;
+        try {
+            List<Market> items = new ArrayList<>();
+            items = marketService.listAllMarket();
+            Collections.reverse(items);
+            return items;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @GetMapping("/get/category")
     public List<Market> getByCategory(@RequestParam(value = "value", required = true, defaultValue = "") String category){
-        List<Market> items = new ArrayList<>();
-        items = marketService.listAllMarketByCategory(category);
-        Collections.reverse(items);
-        return items;
+        try {
+            List<Market> items = new ArrayList<>();
+            items = marketService.listAllMarketByCategory(category);
+            Collections.reverse(items);
+            return items;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @GetMapping("/get/title")
     public List<Market> getByTitle(@RequestParam(value = "value", required = true, defaultValue = "") String title){
         try{
-            return marketService.listAllMarketByTitle(title);
+            List<Market> items = new ArrayList<>();
+            items = marketService.listAllMarketByTitle(title);
+            Collections.reverse(items);
+            return items;
         }catch(NoSuchElementException e){
             return null; 
         }
