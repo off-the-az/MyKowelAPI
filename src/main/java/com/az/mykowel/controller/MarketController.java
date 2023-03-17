@@ -60,8 +60,9 @@ public class MarketController {
     public ResponseEntity<?> send(@ModelAttribute Market item, @RequestParam("file") MultipartFile file,  @RequestHeader String token){
         try{
             Users user = userService.getUserByToken(token);
-            String fileName = fileStorageService.storeFile("market", String.valueOf(item.getUser_id()), file);
+            String fileName = fileStorageService.storeFile("market", String.valueOf(user.getId()), file);
             String fileDownloadUri = "http://mykowel.pp.ua:8000/downloadFile/market/" + fileName;
+            item.setUser_id(user.getId());
             item.setPhoto(fileDownloadUri);
             item.setPnumber(user.getPhone());
             marketService.saveMarket(item);
