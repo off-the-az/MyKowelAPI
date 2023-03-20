@@ -38,7 +38,9 @@ public class Categories{
     private String name;
     private String cat_id;
 
-    public  Categories(Long id, String name, String cat_id){
+    public Categories(){}
+
+    public Categories(Long id, String name, String cat_id){
         this.id = id;
         this.name = name;
         this.cat_id = cat_id;
