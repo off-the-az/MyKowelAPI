@@ -13,7 +13,7 @@ import com.az.mykowel.model.entity.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("contacts")
+@RequestMapping("categories")
 public class CategoriesController {
     @Autowired
     private CategoriesService categoriesService;
