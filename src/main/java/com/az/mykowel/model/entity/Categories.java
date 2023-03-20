@@ -3,18 +3,19 @@ package com.az.mykowel.model.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Categories{
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -33,12 +34,12 @@ public class Categories{
         this.cat_id = cat_id;
     }
 
-    private Long Id;
+    private Long id;
     private String name;
     private String cat_id;
 
     public  Categories(Long id, String name, String cat_id){
-        this.Id = id;
+        this.id = id;
         this.name = name;
         this.cat_id = cat_id;
     }
