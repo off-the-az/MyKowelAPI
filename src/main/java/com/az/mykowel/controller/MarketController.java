@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.Collections;
 
 @RestController
@@ -32,38 +31,38 @@ public class MarketController {
     private MarketService marketService;
 
     @GetMapping("/get")
-    public List<Market> getAll(@RequestParam(value = "category", required = true, defaultValue = "") String category){
+    public ResponseEntity<?> getAll(@RequestParam(value = "category", required = true, defaultValue = "") String category){
         try {
             List<Market> items = new ArrayList<>();
             items = marketService.listAllMarket();
             Collections.reverse(items);
-            return items;
-        } catch (Exception e) {
-            return null;
+            return new ResponseEntity<List<Market>>(items, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
         }
     }
 
     @GetMapping("/get/category")
-    public List<Market> getByCategory(@RequestParam(value = "value", required = true, defaultValue = "") String category){
+    public ResponseEntity<?> getByCategory(@RequestParam(value = "value", required = true, defaultValue = "") String category){
         try {
             List<Market> items = new ArrayList<>();
             items = marketService.listAllMarketByCategory(category);
             Collections.reverse(items);
-            return items;
-        } catch (Exception e) {
-            return null;
+            return new ResponseEntity<List<Market>>(items, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
         }
     }
 
     @GetMapping("/get/title")
-    public List<Market> getByTitle(@RequestParam(value = "value", required = true, defaultValue = "") String title){
+    public ResponseEntity<?> getByTitle(@RequestParam(value = "value", required = true, defaultValue = "") String title){
         try{
             List<Market> items = new ArrayList<>();
             items = marketService.listAllMarketByTitle(title);
             Collections.reverse(items);
-            return items;
+            return new ResponseEntity<List<Market>>(items, HttpStatus.OK);
         }catch(NoSuchElementException e){
-            return null; 
+            return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
         }
     }
 
@@ -78,8 +77,8 @@ public class MarketController {
             item.setPnumber(user.getPhone());
             marketService.saveMarket(item);
             return new ResponseEntity<Market>(item, HttpStatus.OK);
-        }catch (NoSuchElementException e) {
-            return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
+        }catch (Exception e) {
+            return new ResponseEntity<Exception>(e, HttpStatus.CONFLICT);
         }
 
     }
@@ -91,8 +90,8 @@ public class MarketController {
             market.setId(item.getId());
             marketService.saveMarket(market);
             return new ResponseEntity<Market>(market, HttpStatus.OK);
-        }catch(NoSuchElementException e){
-            return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
+        }catch(Exception e){
+            return new ResponseEntity<Exception>(e, HttpStatus.CONFLICT);
         }
     }
     
@@ -107,8 +106,8 @@ public class MarketController {
             else{
                 return new ResponseEntity<>("Permissions denied", HttpStatus.FORBIDDEN);
             }
-        }catch(NoSuchElementException e){
-            return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
+        }catch(Exception e){
+            return new ResponseEntity<Exception>(e, HttpStatus.CONFLICT);
         }
     }
 
