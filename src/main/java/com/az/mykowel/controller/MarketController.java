@@ -31,12 +31,21 @@ public class MarketController {
     private MarketService marketService;
 
     @GetMapping("/get")
-    public ResponseEntity<?> getAll(@RequestParam(value = "category", required = true, defaultValue = "") String category){
+    public ResponseEntity<?> getAll(){
         try {
             List<Market> items = new ArrayList<>();
             items = marketService.listAllMarket();
             Collections.reverse(items);
             return new ResponseEntity<List<Market>>(items, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
+        }
+    }
+
+    @GetMapping("/get/id")
+    public ResponseEntity<?> getById(@RequestParam(value = "value", required = true, defaultValue = "") Long Id){
+        try {
+            return new ResponseEntity<Market>(marketService.getItemById(Id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
         }
@@ -81,6 +90,19 @@ public class MarketController {
             return new ResponseEntity<Exception>(e, HttpStatus.CONFLICT);
         }
 
+    }
+
+    @PutMapping("/set/sold")
+    public ResponseEntity<?> getAll(@RequestParam(value = "id", required = true, defaultValue = "") Long id){
+        try {
+            Market item = new Market();
+            item = marketService.getItemById(Id);
+            item.setSold(1);
+            marketService.saveMarket(item);
+            return new ResponseEntity<Market>(item, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
+        }
     }
     
     @PutMapping(value="/update", consumes={"*/*"})
