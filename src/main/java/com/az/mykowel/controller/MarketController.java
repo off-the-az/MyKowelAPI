@@ -96,7 +96,7 @@ public class MarketController {
     public ResponseEntity<?> getAll(@RequestParam(value = "id", required = true, defaultValue = "") Long id){
         try {
             Market item = new Market();
-            item = marketService.getItemById(Id);
+            item = marketService.getItemById(id);
             item.setSold(1);
             marketService.saveMarket(item);
             return new ResponseEntity<Market>(item, HttpStatus.OK);
