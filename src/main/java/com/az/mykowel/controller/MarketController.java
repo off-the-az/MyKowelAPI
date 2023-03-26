@@ -35,8 +35,14 @@ public class MarketController {
         try {
             List<Market> items = new ArrayList<>();
             items = marketService.listAllMarket();
-            Collections.reverse(items);
-            return new ResponseEntity<List<Market>>(items, HttpStatus.OK);
+            List<Market> freeItems = new ArrayList<>();
+            for(Market item : items){
+                if(item.getSold() != 1){
+                    freeItems.add(item);
+                }
+            }
+            Collections.reverse(freeItems);
+            return new ResponseEntity<List<Market>>(freeItems, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
         }
@@ -56,8 +62,14 @@ public class MarketController {
         try {
             List<Market> items = new ArrayList<>();
             items = marketService.listAllMarketByCategory(category);
-            Collections.reverse(items);
-            return new ResponseEntity<List<Market>>(items, HttpStatus.OK);
+            List<Market> freeItems = new ArrayList<>();
+            for(Market item : items){
+                if(item.getSold() != 1){
+                    freeItems.add(item);
+                }
+            }
+            Collections.reverse(freeItems);
+            return new ResponseEntity<List<Market>>(freeItems, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
         }
@@ -68,8 +80,14 @@ public class MarketController {
         try{
             List<Market> items = new ArrayList<>();
             items = marketService.listAllMarketByTitle(title);
-            Collections.reverse(items);
-            return new ResponseEntity<List<Market>>(items, HttpStatus.OK);
+            List<Market> freeItems = new ArrayList<>();
+            for(Market item : items){
+                if(item.getSold() != 1){
+                    freeItems.add(item);
+                }
+            }
+            Collections.reverse(freeItems);
+            return new ResponseEntity<List<Market>>(freeItems, HttpStatus.OK);
         }catch(NoSuchElementException e){
             return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
         }
