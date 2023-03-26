@@ -97,7 +97,7 @@ public class MarketController {
         try {
             Market item = new Market();
             item = marketService.getItemById(id);
-            item.setSold(1);
+            item.setSold((short)1);
             marketService.saveMarket(item);
             return new ResponseEntity<Market>(item, HttpStatus.OK);
         } catch (NoSuchElementException e) {
