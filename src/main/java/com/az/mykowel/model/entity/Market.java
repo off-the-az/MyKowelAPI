@@ -28,17 +28,6 @@ public class Market {
         this.sold = sold;
     }
 
-    public Market(String title, String description, double price, String category, String pnumber, Long user_id, short checked, short sold){
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.pnumber = pnumber;
-        this.user_id = user_id;
-        this.checked = checked;
-        this.sold = sold;
-    }
-
     public Market() {
 
     }
