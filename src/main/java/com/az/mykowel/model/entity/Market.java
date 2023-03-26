@@ -43,9 +43,9 @@ public class Market {
 
     }
 
-    public void setSold(short sold){ this.sold = sold }
+    public void setSold(short sold){ this.sold = sold; }
 
-    public short getSold() { return this.sold }
+    public short getSold() { return this.sold; }
 
     public void setId(Long id) {
         this.id = id;
