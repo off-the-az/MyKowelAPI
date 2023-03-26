@@ -152,13 +152,13 @@ public class MarketController {
     public ResponseEntity<?> delete(@RequestHeader Long id, @RequestHeader String token){
         try{
             Users user = userService.getUserByToken(token);
-            if(user.checkPerms(user.getIs_admin())) {
-                marketService.deleteMarket(id);
-                return new ResponseEntity<>("Item deleted", HttpStatus.OK);
+            List<Market> items = marketService.listAllMarketByOwner(user.getId());
+            for (Market item : items){
+                if(item.getId() == id && item.getUser_id() == user.getId()){
+                    marketService.deleteMarket(item.getId());
+                }
             }
-            else{
-                return new ResponseEntity<>("Permissions denied", HttpStatus.FORBIDDEN);
-            }
+            return new ResponseEntity<>("Item deleted", HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<Exception>(e, HttpStatus.CONFLICT);
         }
