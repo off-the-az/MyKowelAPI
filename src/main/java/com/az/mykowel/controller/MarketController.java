@@ -93,11 +93,24 @@ public class MarketController {
     }
 
     @PutMapping("/set/sold")
-    public ResponseEntity<?> getAll(@RequestParam(value = "id", required = true, defaultValue = "") Long id){
+    public ResponseEntity<?> setSold(@RequestParam(value = "id", required = true, defaultValue = "") Long id){
         try {
             Market item = new Market();
             item = marketService.getItemById(id);
             item.setSold((short)1);
+            marketService.saveMarket(item);
+            return new ResponseEntity<Market>(item, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
+        }
+    }
+
+    @PutMapping("/set/checked")
+    public ResponseEntity<?> setChecked(@RequestParam(value = "id", required = true, defaultValue = "") Long id){
+        try {
+            Market item = new Market();
+            item = marketService.getItemById(id);
+            item.setChecked((short)1);
             marketService.saveMarket(item);
             return new ResponseEntity<Market>(item, HttpStatus.OK);
         } catch (NoSuchElementException e) {
