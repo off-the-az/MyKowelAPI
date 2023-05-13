@@ -57,6 +57,16 @@ public class MarketController {
         }
     }
 
+    @GetMapping("/get/user")
+    public ResponseEntity<?> getByUser(@RequestParam(value = "value", required = true, defaultValue = "") String token){
+        try {
+            Users user = userService.getUserByToken(token);
+            return new ResponseEntity<List<Market>>(marketService.listAllMarketByOwner(user.getId()), HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
+        }
+    }
+
     @GetMapping("/get/category")
     public ResponseEntity<?> getByCategory(@RequestParam(value = "value", required = true, defaultValue = "") String category){
         try {

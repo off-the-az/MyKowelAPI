@@ -27,6 +27,10 @@ public class MarketService {
         return marketRepository.findByTitleStartsWith(title);
     }
 
+    public List<Market> listAllMarketByOwner(Long owner) {
+        return marketRepository.findByUser_id(owner);
+    }
+
     public void saveMarket(Market item) {
         marketRepository.save(item);
     }
