@@ -62,7 +62,16 @@ public class MarketController {
         try {
             Users user = userService.getUserByToken(token);
             var user_id = user.getId();
-            return new ResponseEntity<List<Market>>(marketService.listAllMarketByOwner(user_id), HttpStatus.OK);
+            List<Market> items = new ArrayList<>();
+            items = marketService.listAllMarketByOwner(user_id);
+            List<Market> freeItems = new ArrayList<>();
+            for(Market item : items){
+                if(item.getSold() != 1){
+                    freeItems.add(item);
+                }
+            }
+            Collections.reverse(freeItems);
+            return new ResponseEntity<List<Market>>(freeItems, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
         }
