@@ -61,7 +61,8 @@ public class MarketController {
     public ResponseEntity<?> getByUser(@RequestParam(value = "value", required = true, defaultValue = "") String token){
         try {
             Users user = userService.getUserByToken(token);
-            return new ResponseEntity<List<Market>>(marketService.listAllMarketByOwner(user.getId()), HttpStatus.OK);
+            var user_id = user.getId();
+            return new ResponseEntity<List<Market>>(marketService.listAllMarketByOwner(user_id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<NoSuchElementException>(e, HttpStatus.CONFLICT);
         }
@@ -109,7 +110,7 @@ public class MarketController {
             Users user = userService.getUserByToken(token);
             String fileName = fileStorageService.storeFile("market", String.valueOf(user.getId()), file);
             String fileDownloadUri = "http://mykowel.pp.ua:8000/downloadFile/market/" + fileName;
-            item.setUser_id(user.getId());
+            item.setOwner(user.getId());
             item.setPhoto(fileDownloadUri);
             item.setPnumber(user.getPhone());
             marketService.saveMarket(item);
@@ -163,7 +164,7 @@ public class MarketController {
         try{
             Users user = userService.getUserByToken(token);
             Market item = marketService.getItemById(id);
-            if(user.getId() == item.getUser_id()){
+            if(user.getId() == item.getOwner()){
                 marketService.deleteMarket(id);
                 return new ResponseEntity<>("Item deleted", HttpStatus.OK);
             }else{

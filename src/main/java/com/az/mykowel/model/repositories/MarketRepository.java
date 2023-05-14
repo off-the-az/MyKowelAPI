@@ -11,5 +11,6 @@ import java.util.List;
 public interface MarketRepository  extends JpaRepository<Market, Long> {
     List<Market> findByCategory(String category);
     List<Market> findByTitleStartsWith(String title);
-    List<Market> findByUser_id(Long owner);
+    List<Market> findByOwner(Long owner);
+    List<Market> getByOwner(Long owner);
 }
