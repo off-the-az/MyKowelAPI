@@ -25,6 +25,10 @@ public class UserService {
         return userRepository.findByToken(token);
     }
 
+    public Users getUserByUsername(String username) {
+        return userRepository.findByLogin(username);
+    }
+
     public void deleteUser(String token) {
         userRepository.deleteByToken(token);
     }

@@ -8,4 +8,5 @@ import com.az.mykowel.model.entity.Users;
 public interface UserRepository extends JpaRepository<Users, Integer>{
     Users findByToken(String token);
     void deleteByToken(String token);
+    Users findByLogin(String login);
 }
