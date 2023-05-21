@@ -15,6 +15,7 @@ The following links allow you to work with database information:
         - [POST] http://mykowel.pp.ua:8000/login
         - [POST] http://mykowel.pp.ua:8000/logout
         - [POST] http://mykowel.pp.ua:8000/register
+        - [POST] http://mykowel.pp.ua:8000/reset-request (need a login)
 
     - Contact`s data (Need an owner, id or full contact`s info)
         - [GET] http://mykowel.pp.ua:8000/contacts/get
@@ -33,6 +34,9 @@ The following links allow you to work with database information:
         - [GET] http://mykowel.pp.ua:8000/market/get
         - [GET] http://mykowel.pp.ua:8000/market/get/title/?value=
         - [GET] http://mykowel.pp.ua:8000/market/get/category/?value=
+        - [GET] http://mykowel.pp.ua:8000/market/get/username/?value=
         - [POST] http://mykowel.pp.ua:8000/market/add
         - [PUT] http://mykowel.pp.ua:8000/market/update
         - [DELETE] http://mykowel.pp.ua:8000/market/delete (need a token)
+
+For more information and examples check - <a href="https://github.com/off-the-az/DOCUMENTATION.md">MK API Documentation</a>
