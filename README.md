@@ -39,4 +39,4 @@ The following links allow you to work with database information:
         - [PUT] http://mykowel.pp.ua:8000/market/update
         - [DELETE] http://mykowel.pp.ua:8000/market/delete (need a token)
 
-For more information and examples check - <a href="https://github.com/off-the-az/DOCUMENTATION.md">MK API Documentation</a>
+For more information and examples check - <a href="https://github.com/off-the-az/MyKowelAPI/DOCUMENTATION.md">MK API Documentation</a>
