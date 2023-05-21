@@ -1,6 +1,6 @@
 # My Kowel API Documentation
 <div style="font-size: 18px">
-This documentation provides more details about API and it`s requests and responses. In this documantation you can get infromation about endpoints and their responses for future front-end building. For more comfortable reading u can use <a href="topic-list">"Topic List"</a> section below. If u have some guestions, u can write it on <a href="https://github.com/off-the-az/MyKowelAPI/issues">"ISSUE"</a> section.
+This documentation provides more details about API and it`s requests and responses. In this documantation you can get infromation about endpoints and their responses for future front-end building. For more comfortable reading u can use <a href="#topic-list">"Topic List"</a> section below. If u have some guestions, u can write it on <a href="https://github.com/off-the-az/MyKowelAPI/issues">"ISSUE"</a> section.
 </div>
 
 # Topic List:
