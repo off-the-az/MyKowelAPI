@@ -14,3 +14,14 @@ spring.servlet.multipart.file-size-threshold=2KB
 spring.servlet.multipart.max-file-size=200MB
 spring.servlet.multipart.max-request-size=250MB
 file.upload-dir=
+
+spring.mail.host=
+spring.mail.port=
+spring.mail.username=
+spring.mail.password=
+spring.mail.properties.mail.smtp.auth=
+spring.mail.properties.mail.smtp.starttls.enable=
+
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.mode=HTML5

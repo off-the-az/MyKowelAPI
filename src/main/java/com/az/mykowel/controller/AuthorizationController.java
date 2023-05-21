@@ -53,7 +53,7 @@ public class AuthorizationController {
             user = userService.getUserByUsername(username);
             System.out.println(user.getEmail());
             emailSenderService.sendMail(user.getEmail(), "Відновлення пароля доступу до аккаунту - " + username, 
-            "Шановний користувач!\nВи подали запит на відновлення пароля доступу до вашого аккаунту в системі My Kowel.Задля відновлення доступу до системи перейдіть за даним посиланням та встановіть новий пароль аби увійти в систему.\n\nПосилання на відновлення паролю - http://localhost:8000/password-reset?token="+user.getToken()+"\n\nЗ повагою, команда розробки C&L Studio та My Kowel DevTeam!");
+            "Шановний користувач!\nВи подали запит на відновлення пароля доступу до вашого аккаунту в системі My Kowel.Задля відновлення доступу до системи перейдіть за даним посиланням та встановіть новий пароль аби увійти в систему.\n\nПосилання на відновлення паролю - http://mykowel.pp.ua:8000/password-reset?token="+user.getToken()+"\n\nЗ повагою, команда розробки C&L Studio та My Kowel DevTeam!");
             return new ResponseEntity<>("Password reset sended!", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error on sending. Pls, check parameters", HttpStatus.CONFLICT);
