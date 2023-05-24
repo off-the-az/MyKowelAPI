@@ -73,6 +73,15 @@ After you have installed you need to run following project:
 After setup and configure you can use the following API in your application!) Enjoy!)
 
 # My Kowel API Documentation
+
+<div style="font-size: 18px">
+This documentation provides more details about API and it`s requests and responses. In this documantation you can get infromation about endpoints and their responses for future front-end building. If u have some guestions/problems/bug-reports, u can write it on <a href="https://github.com/off-the-az/MyKowelAPI/issues">"ISSUE"</a> section.
+</div>
+
+
+
+
+# Base API endpoints:
 <svg fill="none" viewBox="0 0 400 400" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
 <foreignObject width="100%" height="100%">
 		<div xmlns="http://www.w3.org/1999/xhtml">
@@ -520,19 +529,6 @@ color: #fff;
 }
 </style>
 <link href="chrome-extension://cjdnfmjmdligcpfcekfmenlhiopehjkd/web_resources/modal/modal.css" rel="stylesheet" id="__tmpStyle">
-
-
-
-
-
-<div style="font-size: 18px">
-This documentation provides more details about API and it`s requests and responses. In this documantation you can get infromation about endpoints and their responses for future front-end building. If u have some guestions/problems/bug-reports, u can write it on <a href="https://github.com/off-the-az/MyKowelAPI/issues">"ISSUE"</a> section.
-</div>
-
-
-
-
-# Base API endpoints:
 
 <div class="tabs">
 <!--                                                           USER                                                              -->
