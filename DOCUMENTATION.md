@@ -445,19 +445,29 @@ color: #fff;
 </style>
 <link href="chrome-extension://cjdnfmjmdligcpfcekfmenlhiopehjkd/web_resources/modal/modal.css" rel="stylesheet" id="__tmpStyle">
 
+
+
+
+
 <div style="font-size: 18px">
 This documentation provides more details about API and it`s requests and responses. In this documantation you can get infromation about endpoints and their responses for future front-end building. If u have some guestions/problems/bug-reports, u can write it on <a href="https://github.com/off-the-az/MyKowelAPI/issues">"ISSUE"</a> section.
 </div>
 
+
+
+
 # Base API endpoints:
 
 <div class="tabs">
-
+<!--                                                           USER                                                              -->
 <input type="radio" name="tabs" id="user" checked="checked">
 <label for="user">User`s Requests</label>
 <div class="tab">
 
 <button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/get/</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Getting user`s full information from DB. If u want get information u must send 2 request params in Request-Headers.
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
@@ -491,13 +501,16 @@ Headers:
 
 
 <button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">PUT</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/update/</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Updating user`s information in DB. U can update 1 and more informations in order of situation. If u want update information u must send 1 request params in Request-Headers and some request params using "multipart/form-data".
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
 ```
 Headers:
     - token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-Body:
+Body ("multipart/form-data"):
     - (optional choise) login / name / email / phone / password / is_admin
 ```
 </span>
@@ -524,6 +537,9 @@ Body:
 
 
 <button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">delete</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/delete/</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Delete user`s information from DB. If u want delete information u must send 1 request param in Request-Headers.
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
@@ -537,26 +553,92 @@ Headers:
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
 
 ```text
-User deleted
+"User deleted"
 ```
 </span>
 </button>
 
 </div>
-
+<!--                                                           AUTH                                                              -->
 <input type="radio" name="tabs" id="auth" checked="checked">
 <label for="auth">Authorization`s Requests</label>
 <div class="tab">
 
 
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/get/</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">post</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/login</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Register user in auth session and generate session-token. If u want login user u must sent with general request login and password params using "multipart/form-data".
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
 ```
-Headers:
+Body ("multipart/form-data"):
+    - login: (ex.) TEST
+    - password: (ex.) 123456789
+```
+</span>
+</button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
+<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
+
+```json
+[
+  {
+    "id": 22,
+    "login": "TEST",
+    "name": "USER",
+    "email": "username@gmail.com",
+    "phone": "+380000000000",
+    "password": "i5YoL5fbmnteeBT_9l4G1A==",
+    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
+    "is_admin": "1"
+  }
+]
+```
+</span>
+</button>
+
+
+
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">post</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/register</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Register new user in auth session and generate session-token. If u want register new user u must sent with general request some request params using "multipart/form-data".
+</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
+<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
+
+```
+Body ("multipart/form-data"):
+    - login: (ex.) TEST
+    - password: (ex.) 123456789
+    - name: (ex.) USER
+    - email: (ex.) username@gmail.com
+    - phone: (ex.) +380000000000 or <empty-field>
+```
+</span>
+</button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
+<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
+
+```text
+"User had been creating"
+```
+</span>
+</button>
+
+
+
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">post</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/logout</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Finish user`s auth session and delete session-token. If u want finish aut session u must send token as request param using Request-Headers.
+</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
+<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
+
+```
+Headers :
     - token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-    - admin: 0 (or 1)
 ```
 </span>
 </button>
@@ -572,7 +654,7 @@ Headers:
     "email": "username@gmail.com",
     "phone": "+380000000000",
     "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
+    "token": " ",
     "is_admin": "1"
   }
 ]
@@ -582,82 +664,43 @@ Headers:
 
 
 
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">update</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/update/</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">post</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/reset-request</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Orginize SMTP protocol with mail sending for future helping in reseting password. If u want send reset request u must send username as a request param using "multipart/form-data" 
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
 ```
-token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-admin: 0 (or 1)
+Headers :
+    - username: (ex.) USER
 ```
 </span>
 </button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
 
-```json
-[
-  {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
-]
+```text
+"Password reset request sended!"
 ```
 </span>
 </button>
-
-
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">delete</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/update/</span></span></button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
-
-```
-token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-admin: 0 (or 1)
-```
-</span>
-</button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
-
-```json
-[
-  {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
-]
-```
-</span>
-</button>
-
 </div>
-
+<!--                                                           CONTACTS                                                              -->
 <input type="radio" name="tabs" id="contact" checked="checked">
 <label for="contact" >Contact`s Requests</label>
 <div class="tab">
 
 
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/get/</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/contacts/get</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Getting full list of contacts. U don`t need any request params for getting list of information.
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
 ```
-Headers:
-    - token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-    - admin: 0 (or 1)
+None
 ```
 </span>
 </button>
@@ -666,16 +709,21 @@ Headers:
 
 ```json
 [
-  {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
+    {
+        "pnumber": "+380000000000",
+        "owner": "OWNER",
+        "id": 0
+    },
+    {
+        "pnumber": "+380000000001",
+        "owner": "OWNER",
+        "id": 1
+    },
+    {
+        "pnumber": "+380000000002",
+        "owner": "OWNER",
+        "id": 2
+    },
 ]
 ```
 </span>
@@ -683,13 +731,16 @@ Headers:
 
 
 
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">update</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/update/</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/contacts/get/owner?value=</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Getting full list of contacts starts with value from request path. If u want find some inforamtion using owner param u must add data after `?value=` section. For example mykowel.pp.ua:8000/contacts/get/owner?value=OWNER.
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
 ```
-token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-admin: 0 (or 1)
+Path variable:
+    - value: (ex.) OWNER
 ```
 </span>
 </button>
@@ -698,29 +749,38 @@ admin: 0 (or 1)
 
 ```json
 [
-  {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
+    {
+        "pnumber": "+380000000000",
+        "owner": "OWNER",
+        "id": 0
+    },
+    {
+        "pnumber": "+380000000001",
+        "owner": "OWNER",
+        "id": 1
+    },
+    {
+        "pnumber": "+380000000002",
+        "owner": "OWNER",
+        "id": 2
+    },
 ]
 ```
 </span>
 </button>
 
 
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">delete</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/update/</span></span></button>
+
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/contacts/get/id?value=</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Getting current contact by static value from request path. If u want find some inforamtion using id param u must add data after `?value=` section. For example mykowel.pp.ua:8000/contacts/get/id?value=0.
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
 ```
-token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-admin: 0 (or 1)
+Path variable:
+    - value: (ex.) 0
 ```
 </span>
 </button>
@@ -729,36 +789,61 @@ admin: 0 (or 1)
 
 ```json
 [
-  {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
+    {
+        "pnumber": "+380000000000",
+        "owner": "OWNER",
+        "id": 0
+    }
 ]
 ```
 </span>
 </button>
 
+
+
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">post</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/contacts/add</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Getting current contact by static value from request path. If u want find some inforamtion using id param u must add data after `?value=` section. For example mykowel.pp.ua:8000/contacts/get/id?value=0.
+</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
+<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
+
+```
+Path variable:
+    - value: (ex.) 0
+```
+</span>
+</button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
+<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
+
+```json
+[
+    {
+        "pnumber": "+380000000000",
+        "owner": "OWNER",
+        "id": 0
+    }
+]
+```
+</span>
+</button>
 </div>
-
+<!--                                                           MARKET                                                              -->
 <input type="radio" name="tabs" id="market" checked="checked">
 <label for="market">Market`s Requests</label>
 <div class="tab">
 
 
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/get/</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/market/get</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Getting full list of items from market. U don`t need any request params for getting list of information.
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
 ```
-Headers:
-    - token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-    - admin: 0 (or 1)
+None
 ```
 </span>
 </button>
@@ -768,98 +853,64 @@ Headers:
 ```json
 [
   {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
-]
-```
-</span>
-</button>
-
-
-
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">update</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/update/</span></span></button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
-
-```
-token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-admin: 0 (or 1)
-```
-</span>
-</button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
-
-```json
-[
+    "id": 26,
+    "title": "testt",
+    "description": "etse",
+    "price": 39,
+    "category": "0755",
+    "pnumber": "948494949",
+    "owner": 20,
+    "photo": "http://mykowel.pp.ua:8000/downloadFile/market/20-IMG_20230428_155458.jpg",
+    "checked": 0,
+    "sold": 0
+  },
   {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
-]
-```
-</span>
-</button>
-
-
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">delete</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/update/</span></span></button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
-
-```
-token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-admin: 0 (or 1)
-```
-</span>
-</button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
-
-```json
-[
+    "id": 25,
+    "title": "testt",
+    "description": "etse",
+    "price": 39,
+    "category": "0755",
+    "pnumber": "948494949",
+    "owner": 20,
+    "photo": "http://mykowel.pp.ua:8000/downloadFile/market/20-IMG_20230428_155458.jpg",
+    "checked": 0,
+    "sold": 0
+  },
   {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
+    "id": 24,
+    "title": "testt",
+    "description": "etse",
+    "price": 39,
+    "category": "0755",
+    "pnumber": "948494949",
+    "owner": 20,
+    "photo": "http://mykowel.pp.ua:8000/downloadFile/market/20-IMG_20230428_155458.jpg",
+    "checked": 0,
+    "sold": 0
+  },
 ]
 ```
 </span>
 </button>
+
+
 
 </div>
-
+<!--                                                           EVENTS                                                              -->
 <input type="radio" name="tabs" id="events" checked="checked">
 <label for="events">Events`s Requests</label>
 <div class="tab">
 
 
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/get/</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">get</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/events/get</span></span></button>
+<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span class="sc-xGAEC jRjoAh">
+Getting full list of events. U don`t need any request params for getting list of information.
+</span></span></button>
 <button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
 <span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
 
 ```
-Headers:
-    - token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-    - admin: 0 (or 1)
+None
 ```
 </span>
 </button>
@@ -869,77 +920,10 @@ Headers:
 ```json
 [
   {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
-]
-```
-</span>
-</button>
-
-
-
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">update</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/update/</span></span></button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
-
-```
-token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-admin: 0 (or 1)
-```
-</span>
-</button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
-
-```json
-[
-  {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
-  }
-]
-```
-</span>
-</button>
-
-
-<button class="sc-dWBRfb lbhBhk"><button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh"><span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">delete</span><span class="sc-xGAEC jRjoAh">mykowel.pp.ua:8000/user/update/</span></span></button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Params</span>
-
-```
-token: (ex.) u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301
-admin: 0 (or 1)
-```
-</span>
-</button>
-<button class="sc-dWBRfb lbhBhk"><span class="sc-xGAEC jRjoAh">
-<span style="pointer-events: none; background-color: #ff4343; color: white" type="get" class="sc-jHcXXw fWlJmy http-verb get">Result</span>
-
-```json
-[
-  {
-    "id": 22,
-    "login": "TEST",
-    "name": "USER",
-    "email": "username@gmail.com",
-    "phone": "+380000000000",
-    "password": "i5YoL5fbmnteeBT_9l4G1A==",
-    "token": "u3AulkpZFI1lIuGsik6vuPsVWqN7GoWs6o_MO2sdf301",
-    "is_admin": "1"
+    "title": "MK Fest",
+    "place": "Online",
+    "date": "2023-07-06 00:00:00",
+    "id": 1
   }
 ]
 ```
