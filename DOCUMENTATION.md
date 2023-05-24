@@ -1,6 +1,87 @@
 # My Kowel API Documentation
 
 <style data-styled="true" data-styled-version="5.3.0">
+
+.JwytR {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    background: rgb(250, 250, 250);
+    color: rgb(38, 50, 56);
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.33) 0px 0px 6px;
+    overflow: hidden;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    transition: all 0.25s ease 0s;
+    transform: translateY(-50%) scaleY(0);
+}
+.bLuoRC {
+    font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    font-weight: 400;
+    line-height: 1.5em;
+}
+.dcUhBM * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+
+.hbEpxm {
+    padding: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    word-break: break-all;
+    color: #2d3134;
+}
+
+/**
+ * Tabs
+ */
+.tabs {
+  display: flex;
+  flex-wrap: wrap; // make sure it wraps
+}
+.tabs label {
+  order: 1; // Put the labels first
+  display: block;
+  padding: 1rem 2rem;
+  margin-right: 0.2rem;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  transition: background ease 0.2s;
+}
+.tabs .tab {
+  order: 99; // Put the tabs last
+  flex-grow: 1;
+  width: 100%;
+  display: none;
+  padding: 1rem;
+  background: #000;
+}
+.tabs input[type="radio"] {
+  display: none;
+}
+.tabs input[type="radio"]:checked + label {
+  background: #000;
+color: #fff;
+}
+.tabs input[type="radio"]:checked + label + .tab {
+  display: block;
+}
+
+@media (max-width: 45em) {
+  .tabs .tab,
+  .tabs label {
+    order: initial;
+  }
+  .tabs label {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 0.2rem;
+  }
+}
 .lbhBhk {
     outline: 0px;
     color: inherit;
@@ -362,86 +443,6 @@ data-styled.g137[id="sc-cKRKFl"]{content:"jXpMha,"}/*!sc*/
 </style>
 <style data-styled="true" data-styled-version="5.3.0">
 
-.JwytR {
-    position: absolute;
-    width: 100%;
-    z-index: 100;
-    background: rgb(250, 250, 250);
-    color: rgb(38, 50, 56);
-    box-sizing: border-box;
-    box-shadow: rgba(0, 0, 0, 0.33) 0px 0px 6px;
-    overflow: hidden;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    transition: all 0.25s ease 0s;
-    transform: translateY(-50%) scaleY(0);
-}
-.bLuoRC {
-    font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
-    font-weight: 400;
-    line-height: 1.5em;
-}
-.dcUhBM * {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(255,255,255,0);
-}
-
-.hbEpxm {
-    padding: 5px;
-    border: 1px solid #ccc;
-    background: #fff;
-    word-break: break-all;
-    color: #2d3134;
-}
-
-/**
- * Tabs
- */
-.tabs {
-  display: flex;
-  flex-wrap: wrap; // make sure it wraps
-}
-.tabs label {
-  order: 1; // Put the labels first
-  display: block;
-  padding: 1rem 2rem;
-  margin-right: 0.2rem;
-  cursor: pointer;
-  background: #fff;
-  color: #000;
-  font-weight: bold;
-  transition: background ease 0.2s;
-}
-.tabs .tab {
-  order: 99; // Put the tabs last
-  flex-grow: 1;
-  width: 100%;
-  display: none;
-  padding: 1rem;
-  background: #000;
-}
-.tabs input[type="radio"] {
-  display: none;
-}
-.tabs input[type="radio"]:checked + label {
-  background: #000;
-color: #fff;
-}
-.tabs input[type="radio"]:checked + label + .tab {
-  display: block;
-}
-
-@media (max-width: 45em) {
-  .tabs .tab,
-  .tabs label {
-    order: initial;
-  }
-  .tabs label {
-    width: 100%;
-    margin-right: 0;
-    margin-top: 0.2rem;
-  }
-}
 </style>
 <link href="chrome-extension://cjdnfmjmdligcpfcekfmenlhiopehjkd/web_resources/modal/modal.css" rel="stylesheet" id="__tmpStyle">
 

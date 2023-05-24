@@ -83,7 +83,4 @@ This documentation provides more details about API and it`s requests and respons
 
 # Base API endpoints:
 
-
-<div align="center">
-    <img src="endpoints.svg" width="100%" height="100%" alt="css-in-readme">
-</div>
+![](./endpoints.svg)
