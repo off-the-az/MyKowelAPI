@@ -73,6 +73,7 @@ After you have installed you need to run following project:
 After setup and configure you can use the following API in your application!) Enjoy!)
 
 # My Kowel API Documentation
+<svg fill="none" viewBox="0 0 400 400" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
 <foreignObject width="100%" height="100%">
 		<div xmlns="http://www.w3.org/1999/xhtml">
 <style data-styled="true" data-styled-version="5.3.0">
@@ -1010,3 +1011,4 @@ None
 </div>
 </div>
 </foreignObject>
+</svg>
